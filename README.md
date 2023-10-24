@@ -1,16 +1,15 @@
-[![Статус тестов](../../actions/workflows/tests.yml/badge.svg)](../../actions/workflows/tests.yml)
+[![Tests](../../actions/workflows/tests-13-sprint.yml/badge.svg)](../../actions/workflows/tests-13-sprint.yml) [![Tests](../../actions/workflows/tests-14-sprint.yml/badge.svg)](../../actions/workflows/tests-14-sprint.yml)
+# Проект Mesto фронтенд + бэкенд
 
-# react-mesto-api-full
-Репозиторий для приложения проекта `Mesto`, включающий фронтенд и бэкенд части приложения со следующими возможностями: авторизации и регистрации пользователей, операции с карточками и пользователями. Бэкенд расположите в директории `backend/`, а фронтенд - в `frontend/`. 
-  
-Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
+*В данной работе мы закрепляли полученные знания, а именно:*
 
-Адрес репозитория: https://github.com/...
+* начали изучать основы бэкенда
+* создали приложение методом express
+* учились взаимодействовать с базой данных
+* структурировали код
 
-## Ссылки на проект
 
-IP-адрес x.x.x.x
+---
 
-Frontend https://...
+Ссылка на GitHub Pages: https://mariaryumina.github.io/express-mesto-gha/
 
-Backend https://...

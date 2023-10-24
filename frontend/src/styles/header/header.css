@@ -1,0 +1,16 @@
+.header {
+    border-bottom: 1px solid rgba(84, 84, 84, .7);
+    box-sizing: border-box;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 45px 0 41px;
+    display: flex;  /* убирает лишний неизвестный отступ под логотипом */
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        padding: 28px 0 32px;
+    }
+}
