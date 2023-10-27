@@ -57,7 +57,7 @@ function App() {
                 if (res) {
                     handleInformationInfoTooltip(imgAuthYes, 'Вы успешно зарегистрировались!')
                     handleInfoTooltipClick();
-                    navigate('sign-in');
+                    navigate('signin');
                 }
             })
             .catch(err => {
@@ -74,7 +74,7 @@ function App() {
                 if(res) {
                     setLoggedIn(true);
                     setEmail(email);
-                    navigate('/');
+                    navigate('/cards');
                 }
             })
             .catch(err => {
@@ -93,7 +93,7 @@ function App() {
                     if (res) {
                         setLoggedIn(true);
                         setEmail(res.data.email);
-                        navigate("/");
+                        navigate("/cards");
                     }
                 })
                 .catch(err => console.log(`Ошибка запроса проверки токена: ${err}`))
@@ -200,10 +200,10 @@ function App() {
                 <Routes>
                     <Route
                         path='/*'
-                        element={loggedIn ? <Navigate to="/" /> : <Navigate to="/sign-in" />}
+                        element={loggedIn ? <Navigate to="/cards" /> : <Navigate to="/signin" />}
                     />
                     <Route
-                        path='/'
+                        path='/cards'
                         element={ <ProtectedRoute
                             element={Main}
                             onEditProfile={handleEditProfileClick}
@@ -218,7 +218,7 @@ function App() {
                         }
                     />
                     <Route
-                        path='/sign-in'
+                        path='/signin'
                         element={
                             <Login
                                 onAuthorization={handleAuthorization}
@@ -226,7 +226,7 @@ function App() {
                         }
                     />
                     <Route
-                        path='/sign-up'
+                        path='/signup'
                         element={
                             <Register
                                 onRegister={handleRegistration}

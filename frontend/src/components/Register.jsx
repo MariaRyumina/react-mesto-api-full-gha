@@ -31,7 +31,7 @@ export default function Register({ onRegister } ) {
                 <button type="submit" className="register__button">Зарегистрироваться</button>
             </form>
             <p className="register__subtitle">Уже зарегистрированы?
-                <Link to="/sign-in" className="register__subtitle-link">Войти</Link>
+                <Link to="/signin" className="register__subtitle-link">Войти</Link>
             </p>
         </div>
     )

@@ -4,7 +4,7 @@ logs
 npm-debug.log*
 
 # Dependency directory
-backend/node_modules
+**/node_modules/*
 
 # Optional npm cache directory
 .npm
@@ -13,6 +13,7 @@ backend/node_modules
 .DS_Store
 .idea
 .vscode
-
+**/.github
 .env
 package-lock.json
+**/build
