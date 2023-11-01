@@ -1,15 +1,13 @@
+require('dotenv').config();
+
+const { PORT, MONGO_URL } = process.env;
+
 const express = require('express');
 const mongoose = require('mongoose').default;
 const { errors } = require('celebrate');
 const routers = require('./routes/index');
 const handleError = require('./middlewares/handleError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-
-// слушаем 3000 порт
-const {
-  PORT = 3000,
-  MONGO_URL = 'mongodb://127.0.0.1:27017/mestodb',
-} = process.env;
 
 // создание приложения методом express
 const app = express();

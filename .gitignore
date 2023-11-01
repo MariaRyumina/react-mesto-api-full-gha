@@ -14,6 +14,6 @@ npm-debug.log*
 .idea
 .vscode
 **/.github
-.env
+backend/.env
 package-lock.json
 **/build

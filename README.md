@@ -1,16 +1,9 @@
 [![Статус тестов](../../actions/workflows/tests.yml/badge.svg)](../../actions/workflows/tests.yml)
 
-# Проект Mesto фронтенд + бэкенд
+# Проект Mesto фронтенд + бэкенд на удаленном сервере
 
-*В данной работе мы закрепляли полученные знания, а именно:*
+Адрес репозитория: https://github.com/MariaRyumina/react-mesto-api-full-gha
 
-* начали изучать основы бэкенда
-* создали приложение методом express
-* учились взаимодействовать с базой данных
-* структурировали код
-
-
----
-
-Ссылка на GitHub Pages: https://mariaryumina.github.io/express-mesto-gha/
-
+IP 84.201.156.101
+Frontend https://ryumin.nomoredomainsrocks.ru/
+Backend https://api.ryumin.nomoredomainsrocks.ru/

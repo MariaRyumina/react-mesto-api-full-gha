@@ -1,3 +1,4 @@
+const { NODE_ENV, JWT_SECRET } = process.env;
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
@@ -13,6 +14,7 @@ const getUsers = (req, res, next) => {
 };
 
 const getCurrentUser = (req, res, next) => {
+  console.log(`get request from ui with user id: ${req.user._id}`);
   User.findOne({ _id: req.user._id })
     .then((user) => res.send(user))
     .catch(next);
@@ -118,7 +120,7 @@ const login = (req, res, next) => {
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
-        'some-secret-key',
+        NODE_ENV === 'production' ? JWT_SECRET : 'super_duper_crypto_strong_key',
         { expiresIn: '7d' },
         null,
       );

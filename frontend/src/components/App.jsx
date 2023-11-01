@@ -43,6 +43,7 @@ function App() {
         if(loggedIn) {
             Promise.all([api.getUserInfo(), api.getCardList()])
                 .then(([resultUser, resultCard]) => {
+                    console.log(`get users from servers: ${resultUser.name}`)
                     setCurrentUser(resultUser)
                     setCards(resultCard)
                 })

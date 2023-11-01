@@ -53,5 +53,5 @@ class Auth {
 }
 
 export const auth = new Auth ({
-    baseUrl: 'https://auth.nomoreparties.co'
+    baseUrl: 'https://api.ryumin.nomoredomainsrocks.ru'
 })
