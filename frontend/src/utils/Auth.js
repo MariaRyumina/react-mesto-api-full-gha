@@ -19,7 +19,9 @@ class Auth {
             },
             body: JSON.stringify({ email, password })
         })
-            .then(res => this._handleResponse(res))
+            .then(res => {
+                this._handleResponse(res)
+            })
     }
 
     authorize( email, password ) {
@@ -53,5 +55,5 @@ class Auth {
 }
 
 export const auth = new Auth ({
-    baseUrl: 'https://api.ryumin.nomoredomainsrocks.ru'
+    baseUrl: 'http://localhost:3000'
 })

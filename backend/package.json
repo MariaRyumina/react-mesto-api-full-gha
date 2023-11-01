@@ -16,6 +16,7 @@
     "body-parser": "^1.20.2",
     "celebrate": "^15.0.1",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "error-middleware": "^5.2.0",
     "escape-html": "^1.0.3",

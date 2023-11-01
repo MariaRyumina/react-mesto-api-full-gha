@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const { PORT, MONGO_URL } = process.env;
 
+const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose').default;
 const { errors } = require('celebrate');
@@ -12,6 +13,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 // создание приложения методом express
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
