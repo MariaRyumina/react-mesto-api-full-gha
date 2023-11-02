@@ -1,5 +1,5 @@
-import React from "react";
-import PopupWithForm from "./PopupWithForm";
+import React from 'react';
+import PopupWithForm from './PopupWithForm';
 
 export default function AddCardPopup({ isOpen, onClose, onAddCard }) {
     const [name, setName] = React.useState('');
@@ -27,8 +27,8 @@ export default function AddCardPopup({ isOpen, onClose, onAddCard }) {
 
     return(
         <PopupWithForm
-            title="Новое место"
-            name="add"
+            title='Новое место'
+            name='add'
             isOpen={isOpen}
             onClose={onClose}
             onSubmit={handleSubmit}

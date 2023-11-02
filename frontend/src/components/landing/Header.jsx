@@ -1,11 +1,11 @@
 import React from 'react';
 import logoImg from '../../images/logo_place_header.svg';
 import '../../index.css';
-import { Link, Routes, Route } from "react-router-dom";
+import { Link, Routes, Route } from 'react-router-dom';
 
 export default function Header({ email, setLoggedIn }) {
     function logout() {
-        localStorage.removeItem('token');
+        localStorage.removeItem('jwt');
         setLoggedIn(false);
     }
 
@@ -13,7 +13,7 @@ export default function Header({ email, setLoggedIn }) {
         <header className="header">
             <img src={logoImg} alt="лого Место" className="logo" />
             <Routes>
-                <Route path="/cards"
+                <Route path='/cards'
                        element={
                             <div className="header__auth">
                                 <p className="header__auth-email">{email}</p>
@@ -21,17 +21,17 @@ export default function Header({ email, setLoggedIn }) {
                             </div>
                        }
                 />
-                <Route path="/signin"
+                <Route path='/signin'
                        element={
                            <div className="header__auth">
                                 <Link to="/signup" className="header__auth">Регистрация</Link>
                            </div>
                        }
                 />
-                <Route path="/signup"
+                <Route path='/signup'
                        element={
                            <div className="header__auth">
-                               <Link to="/sign-in" className="header__auth">Войти</Link>
+                               <Link to="/signin" className="header__auth">Войти</Link>
                            </div>
                 }/>
             </Routes>

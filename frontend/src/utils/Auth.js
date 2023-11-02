@@ -15,27 +15,27 @@ class Auth {
         return fetch(`${this._baseUrl}/signup`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify({ email, password })
         })
-            .then(res => {
-                this._handleResponse(res)
-            })
+            .then(res => this._handleResponse(res))
     }
 
     authorize( email, password ) {
         return fetch(`${this._baseUrl}/signin`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify({ email, password })
         })
             .then(res => this._handleResponse(res))
             .then((data) => {
                 if (data != null && data.token) {
-                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('jwt', data.token);
                     return true;
                 }
             })
@@ -46,14 +46,17 @@ class Auth {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'GET',
             headers: {
-                "Content-Type": "application/json",
-                "Authorization" : `Bearer ${token}`
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             }
         })
-            .then(res => this._handleResponse(res))
+            .then(res => {
+                return this._handleResponse(res)
+            })
     }
 }
 
 export const auth = new Auth ({
-    baseUrl: 'http://localhost:3000'
+    baseUrl: 'https://api.ryumin.nomoredomainsrocks.ru'
 })
