@@ -3,19 +3,19 @@ import Header from './landing/Header.jsx';
 import Main from './landing/Main.jsx';
 import Footer from './landing/Footer.jsx';
 import '../index.css';
-import PopupWithForm from "./landing/PopupWithForm";
-import ImagePopup from "./landing/ImagePopup";
-import { api } from "../utils/Api";
-import { auth } from "../utils/Auth";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import EditProfilePopup from "./landing/EditProfilePopup";
-import EditAvatarPopup from "./landing/EditAvatarPopup";
-import AddCardPopup from "./landing/AddCardPopup";
-import { Route, Routes, useNavigate, Navigate } from "react-router-dom";
-import Register from "./Register";
-import Login from "./Login";
-import ProtectedRoute from "./ProtectedRoute";
-import InfoTooltip from "./InfoTooltip";
+import PopupWithForm from './landing/PopupWithForm';
+import ImagePopup from './landing/ImagePopup';
+import { api } from '../utils/Api';
+import { auth } from '../utils/Auth';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import EditProfilePopup from './landing/EditProfilePopup';
+import EditAvatarPopup from './landing/EditAvatarPopup';
+import AddCardPopup from './landing/AddCardPopup';
+import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
+import Register from './Register';
+import Login from './Login';
+import ProtectedRoute from './ProtectedRoute';
+import InfoTooltip from './InfoTooltip';
 import imgAuthYes from '../images/auth_yes.png';
 import imgAuthNo from '../images/auth_no.png';
 
@@ -34,16 +34,30 @@ function App() {
     const [email, setEmail] = React.useState('');
     const navigate = useNavigate();
 
+    //проверка токена на валидность
     React.useEffect(() => {
-        handleTokenCheck()
-    }, [])
+        const token = localStorage.getItem('jwt');
+        if(token) {
+            auth.checkToken(token)
+                .then(res => {
+                    if (res) {
+                        setLoggedIn(true);
+                        setEmail(res.email);
+                        navigate('/cards');
+                    }
+                })
+                .catch(err => {
+                    localStorage.removeItem('jwt');
+                    console.log(`Ошибка запроса проверки токена: ${err}`);
+                })
+        }
+    }, [navigate])
 
     //загрузка информации о пользователе и карточек с сервера
     React.useEffect(() => {
         if(loggedIn) {
             Promise.all([api.getUserInfo(), api.getCardList()])
                 .then(([resultUser, resultCard]) => {
-                    console.log(`get users from servers: ${resultUser.name}`)
                     setCurrentUser(resultUser)
                     setCards(resultCard)
                 })
@@ -58,7 +72,7 @@ function App() {
                 if (res) {
                     handleInformationInfoTooltip(imgAuthYes, 'Вы успешно зарегистрировались!')
                     handleInfoTooltipClick();
-                    navigate('signin');
+                    navigate('/signin');
                 }
             })
             .catch(err => {
@@ -85,22 +99,6 @@ function App() {
             })
     }
 
-    //проверка токена на валидность
-    function handleTokenCheck() {
-        const token = localStorage.getItem('token');
-        if(token) {
-            auth.checkToken(token)
-                .then(res => {
-                    if (res) {
-                        setLoggedIn(true);
-                        setEmail(res.data.email);
-                        navigate("/cards");
-                    }
-                })
-                .catch(err => console.log(`Ошибка запроса проверки токена: ${err}`))
-        }
-    }
-
     //загрузка новой информации о пользователе на сервер
     function handleUpdateUser({ name, about }) {
         api.patchUserInfo({ name, about })
@@ -112,8 +110,8 @@ function App() {
     }
 
     //загрузка нового аватара на сервер
-    function handleUpdateAvatar({ avatar }) {
-        api.updateUserAvatar({ avatar })
+    function handleUpdateAvatar(avatar) {
+        api.updateUserAvatar(avatar)
             .then(avatar => setCurrentUser(avatar))
             .then(() => closeAllPopups())
             .catch(err => console.log(`Ошибка обновления аватара: ${err}`))
@@ -121,10 +119,10 @@ function App() {
 
     //запрос на лайк/дизлайк карточки и получение обновленных данных карточки
     function handleCardLike(card) {
-        const isLiked = card.likes.some(i => i._id === currentUser._id);
+        const isLiked = card.likes.some(id => id === currentUser._id);
 
         api.changeLikeCardStatus(card._id, !isLiked)
-            .then(newCard => setCards(state => state.map(c => c._id === card._id ? newCard : c)))
+            .then(cardLike => setCards(state => state.map(c => c._id === card._id ? cardLike : c)))
             .catch(err => console.log(`Ошибка поддержки лайков/дизлайков: ${err}`))
     }
 
@@ -201,7 +199,7 @@ function App() {
                 <Routes>
                     <Route
                         path='/*'
-                        element={loggedIn ? <Navigate to="/cards" /> : <Navigate to="/signin" />}
+                        element={loggedIn ? <Navigate to='/cards' /> : <Navigate to='/signin' />}
                     />
                     <Route
                         path='/cards'
@@ -246,8 +244,8 @@ function App() {
                 />
 
                 <PopupWithForm
-                    title="Вы уверены?"
-                    name="delete"
+                    title='Вы уверены?'
+                    name='delete'
                     isOpen={isDeleteCardPopupOpen}
                     onClose={closeAllPopups}
                     onSubmit={handleCardDelete}

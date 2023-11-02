@@ -1,7 +1,7 @@
 import '../../index.css';
 import React from 'react';
-import Card from "./Card";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import Card from './Card';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 export default function Main({
                                  onEditProfile,

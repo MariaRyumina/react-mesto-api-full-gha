@@ -9,12 +9,11 @@ const ConflictError = require('../errors/ConflictError');
 
 const getUsers = (req, res, next) => {
   User.find({})
-    .then((users) => res.send({ data: users }))
+    .then((users) => res.send(users))
     .catch(next);
 };
 
 const getCurrentUser = (req, res, next) => {
-  console.log(`get request from ui with user id: ${req.user._id}`);
   User.findOne({ _id: req.user._id })
     .then((user) => res.send(user))
     .catch(next);
@@ -99,7 +98,7 @@ const upgradeAvatar = (req, res, next) => {
     .orFail(() => Error('NotFound'))
     .then((data) => {
       if (data) {
-        res.send({ avatar });
+        res.send(data);
         return;
       }
       next(new NotFoundError('Пользователь с указанным _id не найден'));

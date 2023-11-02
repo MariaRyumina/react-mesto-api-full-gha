@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const { PORT, MONGO_URL } = process.env;
 
+const helmet = require('helmet');
 const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose').default;
@@ -9,16 +10,19 @@ const { errors } = require('celebrate');
 const routers = require('./routes/index');
 const handleError = require('./middlewares/handleError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const limiter = require('./middlewares/rateLimit');
 
 // создание приложения методом express
 const app = express();
 
 app.use(cors());
+app.use(helmet());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(requestLogger);
-
+app.use(limiter);
 app.use(routers);
 
 app.use(errorLogger);

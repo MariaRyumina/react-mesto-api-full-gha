@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Register({ onRegister } ) {
     const [email, setEmail] = React.useState('');
@@ -31,7 +31,7 @@ export default function Register({ onRegister } ) {
                 <button type="submit" className="register__button">Зарегистрироваться</button>
             </form>
             <p className="register__subtitle">Уже зарегистрированы?
-                <Link to="/signin" className="register__subtitle-link">Войти</Link>
+                <Link to='/signin' className="register__subtitle-link">Войти</Link>
             </p>
         </div>
     )

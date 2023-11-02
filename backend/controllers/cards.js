@@ -4,8 +4,9 @@ const ValidationError = require('../errors/ValidationError');
 const ForbiddenError = require('../errors/ForbiddenError');
 const NotFoundError = require('../errors/NotFoundError');
 
-const getCard = (req, res, next) => {
+const getCards = (req, res, next) => {
   Card.find({})
+    .sort({ createdAt: 'desc' })
     .then((cards) => res.send(cards))
     .catch(next);
 };
@@ -14,7 +15,7 @@ const createCard = (req, res, next) => {
   const { name, link } = req.body;
 
   Card.create({ name, link, owner: req.user._id })
-    .then((card) => res.send({ data: card }))
+    .then((card) => res.send(card))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new ValidationError('Переданы некорректные данные при создании карточки'));
@@ -55,7 +56,7 @@ const likeCard = (req, res, next) => {
     { new: true },
   )
     .orFail(() => Error('NotFound'))
-    .then((data) => res.send({ data }))
+    .then((card) => res.send(card))
     .catch((err) => {
       if (err.name === 'CastError') {
         next(new ValidationError('Переданы некорректные данные для постановки лайка'));
@@ -75,7 +76,7 @@ const dislikeCard = (req, res, next) => {
     { new: true },
   )
     .orFail(() => Error('NotFound'))
-    .then((data) => res.send({ data }))
+    .then((card) => res.send(card))
     .catch((err) => {
       if (err.name === 'CastError') {
         next(new ValidationError('Переданы некорректные данные для снятии лайка'));
@@ -89,7 +90,7 @@ const dislikeCard = (req, res, next) => {
 };
 
 module.exports = {
-  getCard,
+  getCards,
   createCard,
   deleteCard,
   likeCard,
