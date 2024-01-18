@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Register({ onRegister } ) {
+export default function Register({ onRegister }) {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
 
@@ -21,7 +21,7 @@ export default function Register({ onRegister } ) {
     return(
         <div className="register">
             <p className="register__title">Регистрация</p>
-            <form onSubmit={handleSubmit}  className="register__form" noValidate>
+            <form onSubmit={handleSubmit} className="register__form" noValidate>
                 <input id="register-email" type="email" placeholder="Email" name="email" required
                        value={email} onChange={handleChangeEmail} className="register__input register__input_value_email" />
                 <span id="email-error" className="register__input-error" />

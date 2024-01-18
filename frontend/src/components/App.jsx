@@ -37,6 +37,7 @@ function App() {
     //проверка токена на валидность
     React.useEffect(() => {
         const token = localStorage.getItem('jwt');
+
         if(token) {
             auth.checkToken(token)
                 .then(res => {
@@ -213,8 +214,7 @@ function App() {
                             onCardLike={handleCardLike}
                             cards={cards}
                             loggedIn={loggedIn}
-                        />
-                        }
+                        /> }
                     />
                     <Route
                         path='/signin'

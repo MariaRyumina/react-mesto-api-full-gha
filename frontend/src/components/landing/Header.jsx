@@ -14,12 +14,12 @@ export default function Header({ email, setLoggedIn }) {
             <img src={logoImg} alt="лого Место" className="logo" />
             <Routes>
                 <Route path='/cards'
-                       element={
-                            <div className="header__auth">
-                                <p className="header__auth-email">{email}</p>
-                                <Link to="/signin" onClick={logout} className="header__auth">Выход</Link>
-                            </div>
-                       }
+                    element={
+                        <div className="header__auth">
+                            <p className="header__auth-email">{email}</p>
+                            <Link to="/signin" onClick={logout} className="header__auth">Выход</Link>
+                        </div>
+                    }
                 />
                 <Route path='/signin'
                        element={
