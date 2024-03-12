@@ -13,7 +13,7 @@ ___
 
 Данная работа объединяет <a href="https://github.com/MariaRyumina/express-mesto-gha">серверную</a> и <a href="https://github.com/MariaRyumina/react-mesto-auth">фронтенд</a> части проекта.
 
-IP 158.160.112.191
+IP 84.201.159.116
 
 Frontend https://ryumin.nomoredomainsrocks.ru/
 
